@@ -5,20 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="個人作品集 — 前端開發與 UI 設計"
+      content="李子秀 — 前端開發與 UI 設計作品集"
     />
-    <title>你的名字 | Portfolio</title>
+    <title>李子秀 | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Syne:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
-    <!-- 可替換：網站標題、導覽文案、各區塊內容與連結 -->
-
     <a class="skip-link" href="#main">跳至主要內容</a>
 
-    <header class="site-header">
+    <header class="site-header" data-header>
       <div class="header-inner">
-        <a class="logo" href="#hero" aria-label="回到頁首">Portfolio</a>
+        <a class="logo" href="#hero" aria-label="回到頁首">
+          <span class="logo-line">李子</span>
+          <span class="logo-line">秀</span>
+        </a>
 
         <button
           type="button"
@@ -38,39 +45,179 @@
             <li><a href="#projects">作品</a></li>
             <li><a href="#skills">技能</a></li>
             <li><a href="#experience">經歷</a></li>
-            <li><a href="#footer">聯絡</a></li>
           </ul>
         </nav>
 
-        <button
-          type="button"
-          class="theme-toggle"
-          id="theme-toggle"
-          aria-label="切換淺色或深色主題"
-        ></button>
+        <div class="header-actions">
+          <ul class="header-social" aria-label="社群連結">
+            <li>
+              <a href="mailto:hello@example.com" aria-label="Email">Email</a>
+            </li>
+            <li>
+              <a
+                href="https://github.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label="GitHub"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+                aria-label="LinkedIn"
+                >in</a
+              >
+            </li>
+          </ul>
+          <button
+            type="button"
+            class="theme-toggle"
+            id="theme-toggle"
+            aria-label="切換淺色或深色主題"
+          ></button>
+        </div>
       </div>
     </header>
 
     <main id="main">
       <section id="hero" class="hero section">
-        <div class="hero-inner reveal">
-          <p class="eyebrow">Front-end · UI/UX</p>
-          <h1 class="hero-title">你的名字</h1>
-          <p class="hero-slogan">
-            用程式與設計，把複雜變簡單，把想法變成可觸及的體驗。
+        <div class="hero-grid">
+          <div class="hero-intro reveal">
+            <p class="eyebrow">Front-end · UI/UX</p>
+            <p class="hero-role">前端與介面設計</p>
+          </div>
+
+          <div class="hero-name reveal" aria-label="李子秀">
+            <h1 class="hero-name-line">
+              <span class="hero-char" style="--i: 0">李</span>
+            </h1>
+            <h1 class="hero-name-line hero-name-line--second">
+              <span class="hero-char" style="--i: 1">子</span
+              ><span class="hero-char" style="--i: 2">秀</span>
+            </h1>
+          </div>
+
+          <div class="hero-copy reveal">
+            <h2 class="hero-headline">
+              品牌與網頁<br />
+              <em>體驗設計</em>
+            </h2>
+            <p class="hero-slogan">
+              用程式與設計，把複雜變簡單，把想法變成可觸及的體驗。
+            </p>
+            <a class="btn-primary" href="#footer">開始對話</a>
+          </div>
+
+          <div class="hero-meta reveal" aria-hidden="true">
+            <p class="hero-stat">
+              <span class="hero-stat-num">持續</span>
+              <span class="hero-stat-label">打磨每個像素與互動細節</span>
+            </p>
+            <div class="scroll-hint">
+              <span class="scroll-hint-word">scroll</span>
+              <span class="scroll-hint-line"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="expertise" class="section section-expertise">
+        <div class="container">
+          <header class="section-intro reveal">
+            <p class="section-label">專長領域</p>
+            <h2 class="display-title">
+              我協助專案<br />
+              完成這些方向
+            </h2>
+          </header>
+
+          <ul class="expertise-list">
+            <li class="expertise-item reveal">
+              <span class="expertise-index" aria-hidden="true">01</span>
+              <div>
+                <h3>響應式網站與 Landing</h3>
+                <p>
+                  打造高質感、可轉換的版面，兼顧效能、SEO 與無障礙標記。
+                </p>
+              </div>
+            </li>
+            <li class="expertise-item reveal">
+              <span class="expertise-index" aria-hidden="true">02</span>
+              <div>
+                <h3>視覺與介面系統</h3>
+                <p>
+                  定義色彩、字級與元件，讓品牌在不同頁面保持一致。
+                </p>
+              </div>
+            </li>
+            <li class="expertise-item reveal">
+              <span class="expertise-index" aria-hidden="true">03</span>
+              <div>
+                <h3>互動與產品體驗</h3>
+                <p>
+                  用細緻動效與清楚的資訊層級，讓複雜流程變得直覺。
+                </p>
+              </div>
+            </li>
+            <li class="expertise-item reveal">
+              <span class="expertise-index" aria-hidden="true">04</span>
+              <div>
+                <h3>原生前端實作</h3>
+                <p>
+                  語意化 HTML、可維護 CSS 與穩健 JavaScript，不依賴框架也能擴充。
+                </p>
+              </div>
+            </li>
+          </ul>
+
+          <p class="section-cta reveal">
+            好奇更多？
+            <a href="#projects">看看作品</a>
+            <span class="section-cta-or">或繼續往下捲動</span>
           </p>
         </div>
-        <div class="hero-decoration" aria-hidden="true"></div>
+      </section>
+
+      <section class="section section-statement" aria-label="設計理念">
+        <div class="container">
+          <h2 class="statement-lines reveal">
+            <span class="statement-line">好的設計</span>
+            <span class="statement-line">需要時間</span>
+            <span class="statement-line statement-line--accent"
+              >而與我合作能省下它</span
+            >
+          </h2>
+        </div>
       </section>
 
       <section id="about" class="section section-about">
         <div class="container">
-          <header class="section-header reveal">
-            <h2>關於我</h2>
-            <p class="section-lead">
-              簡短介紹你的背景、正在專注的方向，以及你如何看待產品與使用者。
-            </p>
+          <header class="section-intro reveal">
+            <p class="section-label">關於我</p>
+            <h2 class="display-title display-title--sm">
+              合作夥伴選擇我，<br />
+              是因為觀點與執行力
+            </h2>
           </header>
+
+          <ul class="values-list">
+            <li class="values-item reveal">
+              <h3>獨特的視覺方向，讓作品在眾多頁面中脫穎而出。</h3>
+            </li>
+            <li class="values-item reveal">
+              <h3>從概念到上線，在意每個細節的完成度。</h3>
+            </li>
+            <li class="values-item reveal">
+              <h3>建立可擴充的設計系統，維持品牌一致性。</h3>
+            </li>
+            <li class="values-item reveal">
+              <h3>以使用者為中心，與設計、後端順暢協作落地。</h3>
+            </li>
+          </ul>
+
           <div class="about-grid">
             <div class="about-card reveal">
               <h3>背景</h3>
@@ -83,7 +230,7 @@
               <h3>專業</h3>
               <p>
                 從版型與元件設計到互動與可及性，我習慣以使用者為中心迭代，
-                並與設計、後端協作讓專案順利落地。
+                並與團隊協作讓專案順利交付。
               </p>
             </div>
           </div>
@@ -92,14 +239,15 @@
 
       <section id="projects" class="section section-projects">
         <div class="container">
-          <header class="section-header reveal">
-            <h2>精選作品</h2>
+          <header class="section-intro reveal">
+            <p class="section-label">Work</p>
+            <h2 class="display-title">精選作品</h2>
             <p class="section-lead">
               三個代表性專案；將下方標題、描述與圖片替換為你的真實作品。
             </p>
           </header>
 
-          <div class="projects-grid">
+          <div class="projects-list">
             <article class="project-card reveal">
               <div
                 class="project-thumb"
@@ -107,6 +255,7 @@
                 aria-label="作品一預覽圖佔位"
               ></div>
               <div class="project-body">
+                <span class="project-num">01</span>
                 <h3>響應式品牌官網</h3>
                 <p>
                   以 Grid 與 Flex 打造多斷點版面，兼顧效能與可讀性，
@@ -127,6 +276,7 @@
                 aria-label="作品二預覽圖佔位"
               ></div>
               <div class="project-body">
+                <span class="project-num">02</span>
                 <h3>互動式儀表板</h3>
                 <p>
                   資料視覺化與篩選互動，採模組化結構方便擴充，
@@ -147,6 +297,7 @@
                 aria-label="作品三預覽圖佔位"
               ></div>
               <div class="project-body">
+                <span class="project-num">03</span>
                 <h3>設計系統元件庫</h3>
                 <p>
                   定義色彩、字級與間距權杖，統一按鈕、卡片與表單樣式，
@@ -165,11 +316,9 @@
 
       <section id="skills" class="section section-skills">
         <div class="container">
-          <header class="section-header reveal">
-            <h2>技能</h2>
-            <p class="section-lead">
-              我擅長的技術棧與工具；可依你的履歷調整項目與排序。
-            </p>
+          <header class="section-intro reveal">
+            <p class="section-label">技能</p>
+            <h2 class="display-title display-title--sm">技術棧</h2>
           </header>
           <ul class="skills-grid">
             <li class="skill-item reveal">HTML</li>
@@ -184,17 +333,16 @@
 
       <section id="experience" class="section section-experience">
         <div class="container">
-          <header class="section-header reveal">
-            <h2>經歷</h2>
+          <header class="section-intro reveal">
+            <p class="section-label">經歷</p>
+            <h2 class="display-title display-title--sm">里程碑</h2>
             <p class="section-lead">
               比賽、檢定與活動紀錄；請替換為你的真實項目與日期。
             </p>
           </header>
           <ul class="timeline">
             <li class="timeline-item reveal">
-              <time class="timeline-date" datetime="2024-05"
-                >2024 · 五月</time
-              >
+              <time class="timeline-date" datetime="2024-05">2024 · 五月</time>
               <div class="timeline-body">
                 <h3>全國網頁設計競賽 · 佳作</h3>
                 <p>
@@ -216,9 +364,7 @@
               </div>
             </li>
             <li class="timeline-item reveal">
-              <time class="timeline-date" datetime="2023-03"
-                >2023 · 三月</time
-              >
+              <time class="timeline-date" datetime="2023-03">2023 · 三月</time>
               <div class="timeline-body">
                 <h3>校園黑客松 · 參與</h3>
                 <p>
@@ -230,35 +376,65 @@
           </ul>
         </div>
       </section>
+
+      <section class="section section-cta-block" aria-label="聯絡邀請">
+        <div class="container cta-inner reveal">
+          <h2 class="display-title">
+            一起打造<br />
+            令人記住的體驗
+          </h2>
+          <p class="cta-lead">從課堂專案到實際作品，歡迎聊聊你的想法。</p>
+          <a class="btn-primary btn-primary--large" href="mailto:hello@example.com"
+            >hello@example.com</a
+          >
+        </div>
+      </section>
     </main>
 
-    <footer id="footer" class="site-footer section">
-      <div class="container footer-inner reveal">
-        <div class="footer-brand">
-          <p class="footer-name">你的名字</p>
-          <p class="footer-tagline">持續學習 · 實作 · 分享</p>
+    <footer id="footer" class="site-footer">
+      <div class="container footer-grid reveal">
+        <div class="footer-brand-block">
+          <p class="footer-label">網站使用</p>
+          <ul class="footer-tools">
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Figma</li>
+          </ul>
         </div>
-        <ul class="social-list" aria-label="社群連結">
-          <li>
-            <a href="https://github.com/" rel="noopener noreferrer" target="_blank"
-              >GitHub</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://www.linkedin.com/"
-              rel="noopener noreferrer"
-              target="_blank"
-              >LinkedIn</a
-            >
-          </li>
-          <li>
-            <a href="mailto:hello@example.com">Email</a>
-          </li>
-        </ul>
+
+        <div class="footer-contact-block">
+          <p class="footer-label">聯絡</p>
+          <ul class="social-list" aria-label="社群連結">
+            <li><a href="mailto:hello@example.com">Email</a></li>
+            <li>
+              <a
+                href="https://github.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/"
+                rel="noopener noreferrer"
+                target="_blank"
+                >LinkedIn</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-name-block">
+          <p class="footer-name-line">李子</p>
+          <p class="footer-name-line">秀</p>
+          <p class="footer-role">Front-end · UI/UX · 2026</p>
+        </div>
+
         <p class="copyright">
           <small
-            >&copy; <span id="year"></span> 你的名字. 保留所有權利。</small
+            >&copy; <span id="year"></span> 李子秀. 保留所有權利。</small
           >
         </p>
       </div>

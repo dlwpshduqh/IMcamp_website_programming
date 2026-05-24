@@ -2,9 +2,8 @@
   "use strict";
 
   const STORAGE_KEY = "portfolio-theme";
-  const header = document.querySelector(".site-header");
+  const header = document.querySelector("[data-header]");
   const navToggle = document.getElementById("nav-toggle");
-  const siteNav = document.getElementById("site-nav");
   const themeToggle = document.getElementById("theme-toggle");
   const yearEl = document.getElementById("year");
 
@@ -25,36 +24,38 @@
   }
 
   function getPreferredTheme() {
-    if (window.matchMedia("(prefers-color-scheme: light)").matches) {
-      return "light";
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
     }
-    return "dark";
+    return "light";
   }
 
   function applyTheme(theme) {
     const root = document.documentElement;
-    if (theme === "light") {
-      root.setAttribute("data-theme", "light");
+    if (theme === "dark") {
+      root.setAttribute("data-theme", "dark");
     } else {
       root.removeAttribute("data-theme");
     }
     if (themeToggle) {
       themeToggle.setAttribute(
         "aria-label",
-        theme === "light" ? "切換為深色主題" : "切換為淺色主題"
+        theme === "dark" ? "切換為淺色主題" : "切換為深色主題"
       );
     }
   }
 
   function initTheme() {
     const stored = getStoredTheme();
-    const theme = stored === "light" || stored === "dark" ? stored : getPreferredTheme();
+    const theme =
+      stored === "light" || stored === "dark" ? stored : getPreferredTheme();
     applyTheme(theme);
   }
 
   function toggleTheme() {
-    const isLight = document.documentElement.getAttribute("data-theme") === "light";
-    const next = isLight ? "dark" : "light";
+    const isDark =
+      document.documentElement.getAttribute("data-theme") === "dark";
+    const next = isDark ? "light" : "dark";
     applyTheme(next);
     setStoredTheme(next);
   }
@@ -91,14 +92,21 @@
     });
 
     window.addEventListener("resize", function () {
-      if (window.matchMedia("(min-width: 768px)").matches) {
+      if (window.matchMedia("(min-width: 900px)").matches) {
         closeNav();
       }
     });
   }
 
+  function scrollToTarget(target) {
+    const offset = header ? header.offsetHeight : 0;
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - offset + 1;
+    window.scrollTo({ top: top, behavior: "smooth" });
+  }
+
   function initSmoothScroll() {
-    const links = document.querySelectorAll('.site-nav a[href^="#"]');
+    const links = document.querySelectorAll('a[href^="#"]');
     links.forEach(function (anchor) {
       anchor.addEventListener("click", function (e) {
         const id = anchor.getAttribute("href");
@@ -106,55 +114,58 @@
         const target = document.querySelector(id);
         if (!target) return;
         e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        scrollToTarget(target);
         closeNav();
         if (history.replaceState) {
           history.replaceState(null, "", id);
         }
       });
     });
+  }
 
-    const logo = document.querySelector('.logo[href^="#"]');
-    if (logo) {
-      logo.addEventListener("click", function (e) {
-        const id = logo.getAttribute("href");
-        if (!id || id === "#") return;
-        const target = document.querySelector(id);
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-        closeNav();
-        if (history.replaceState) {
-          history.replaceState(null, "", id);
-        }
-      });
+  function initHeaderScroll() {
+    if (!header) return;
+
+    function onScroll() {
+      header.classList.toggle("is-scrolled", window.scrollY > 24);
     }
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
   }
 
   function initReveal() {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      document.querySelectorAll(".reveal").forEach(function (el) {
-        el.classList.add("is-visible");
-      });
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
+      .matches;
+
+    if (reduced) {
+      document
+        .querySelectorAll(".reveal, .statement-line")
+        .forEach(function (el) {
+          el.classList.add("is-visible");
+        });
       return;
     }
 
-    const elements = document.querySelectorAll(".reveal");
-    if (!elements.length) return;
+    const revealEls = document.querySelectorAll(".reveal");
+    const statementLines = document.querySelectorAll(".statement-line");
 
     const observer = new IntersectionObserver(
       function (entries, obs) {
         entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            obs.unobserve(entry.target);
-          }
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          obs.unobserve(entry.target);
         });
       },
-      { root: null, rootMargin: "0px 0px -8% 0px", threshold: 0.1 }
+      { root: null, rootMargin: "0px 0px -6% 0px", threshold: 0.12 }
     );
 
-    elements.forEach(function (el) {
+    revealEls.forEach(function (el) {
+      observer.observe(el);
+    });
+
+    statementLines.forEach(function (el) {
       observer.observe(el);
     });
   }
@@ -172,6 +183,7 @@
     }
     initNavToggle();
     initSmoothScroll();
+    initHeaderScroll();
     initReveal();
     initYear();
   });
